@@ -51,6 +51,27 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
     });
   }
 
+  Future<void> _dialogBuilder(
+      BuildContext context, String name, String barcode) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(name),
+          content: Text('Barcode: $barcode'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,6 +99,11 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                       title: Text(filteredProducts[index]['name']!),
                       subtitle: Text(
                           'Barcode: ${filteredProducts[index]['barcode']}'),
+                      onTap: () => _dialogBuilder(
+                        context,
+                        filteredProducts[index]['name']!,
+                        filteredProducts[index]['barcode']!,
+                      ),
                     ),
                   );
                 },
