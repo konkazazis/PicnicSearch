@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
   runApp(BarcodeSearchApp());
@@ -24,21 +26,24 @@ class BarcodeSearchScreen extends StatefulWidget {
 }
 
 class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
-  final List<Map<String, String>> products = [
-    {'barcode': '123456', 'name': 'Bundmohren 1 Bund'},
-    {'barcode': '234567', 'name': 'Bio Trauben hell 400g'},
-    {'barcode': '345678', 'name': 'Lauchzwiebeln 1 Bund'},
-    {'barcode': '456789', 'name': 'Gut&Gunstig Mohren 2kg'},
-    {'barcode': '567890', 'name': 'PN Bio Kiwi Gold 3st'},
-  ];
-
+  List<Map<String, String>> products = [];
   List<Map<String, String>> filteredProducts = [];
   TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    filteredProducts = products;
+    loadProducts();
+  }
+
+  Future<void> loadProducts() async {
+    String jsonString = await rootBundle.loadString('assets/products.json');
+    List<dynamic> jsonResponse = json.decode(jsonString);
+    setState(() {
+      products =
+          jsonResponse.map((data) => Map<String, String>.from(data)).toList();
+      filteredProducts = products;
+    });
   }
 
   void _filterProducts(String query) {
@@ -51,20 +56,33 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
     });
   }
 
-  Future<void> _dialogBuilder(
-      BuildContext context, String name, String barcode) {
+  Future<void> _showProductDialog(
+      BuildContext context, String name, String barcode, String qrPath) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(name),
-          content: Text('Barcode: $barcode'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                qrPath,
+                width: 150,
+                height: 150,
+                errorBuilder: (context, error, stackTrace) {
+                  return Icon(Icons.broken_image,
+                      size: 100, color: Colors.grey);
+                },
+              ),
+              SizedBox(height: 16),
+              Text('Barcode: $barcode'),
+            ],
+          ),
           actions: <Widget>[
             TextButton(
               child: const Text('Close'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ],
         );
@@ -99,10 +117,11 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                       title: Text(filteredProducts[index]['name']!),
                       subtitle: Text(
                           'Barcode: ${filteredProducts[index]['barcode']}'),
-                      onTap: () => _dialogBuilder(
+                      onTap: () => _showProductDialog(
                         context,
                         filteredProducts[index]['name']!,
                         filteredProducts[index]['barcode']!,
+                        filteredProducts[index]['qr']!,
                       ),
                     ),
                   );
