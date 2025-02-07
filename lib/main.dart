@@ -11,8 +11,8 @@ class BarcodeSearchApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Barcode Search',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      title: 'Product Search',
+      theme: ThemeData(primarySwatch: Colors.red),
       home: BarcodeSearchScreen(),
     );
   }
@@ -56,6 +56,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
     });
   }
 
+  // showDialog triggers the pop up for every item
   Future<void> _showProductDialog(
       BuildContext context, String name, String barcode, String qrPath) {
     return showDialog<void>(

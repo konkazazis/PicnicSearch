@@ -2,32 +2,32 @@
   {
     "barcode": "123456",
     "name": "Bundmohren 1 Bund",
-    "qr": "./assets/bundmohren.jpg"
+    "qr": "./bundmohren.jpg"
   },
   {
     "barcode": "234567",
     "name": "Bio Trauben hell 400g",
-    "qr": "./assets/biotrauben.jpg"
+    "qr": "./biotrauben.jpg"
   },
   {
     "barcode": "345678",
     "name": "Lauchzwiebeln 1 Bund",
-    "qr": "./assets/lauchzwiebeln.jpg"
+    "qr": "./lauchzwiebeln1bund.jpg"
   },
   {
     "barcode": "456789",
     "name": "Gut&Gunstig Mohren 2kg",
-    "qr": "./assets/ggmohren2kg.jpg"
+    "qr": "./ggmohren2kg.jpg"
   },
   {
     "barcode": "567890",
     "name": "PN Bio Kiwi Gold 3st",
-    "qr": "./assets/pnbiokiwigold.jpg"
+    "qr": "./pnbiokiwigold.jpg"
   },
   {
     "barcode": "567890",
     "name": "PN Kaki 1st",
-    "qr": "./assets/pnkaki1st.jpg"
+    "qr": "./pnkaki1st.jpg"
   },
   {
     "barcode": "567890",
@@ -37,32 +37,32 @@
   {
     "barcode": "567890",
     "name": "PN Blumenkohl 1st",
-    "qr": "./assets/pnblumenkohl1st.jpg"
+    "qr": "./pnblumenkohl1st.jpg"
   },
   {
     "barcode": "567890",
     "name": "PN Granatapfel 1st",
-    "qr": "./assets/pngrnatapfel1st.jpg"
+    "qr": "./pngrnatapfel1st.jpg"
   },
   {
     "barcode": "567890",
     "name": "meinLand Bio Hokkaido Kurbis 1st",
-    "qr": "./assets/hokkaidokurbis.jpg"
+    "qr": "./hokkaidokurbis.jpg"
   },
   {
     "barcode": "567890",
     "name": "Gut&Gunstig Apfel Jonagored 1kg",
-    "qr": "./assets/ggapfeljonagored.jpg"
+    "qr": "./ggapfeljonagored.jpg"
   },
   {
     "barcode": "567890",
     "name": "Bio Champiognons braun 200g",
-    "qr": "./assets/biochampiognonsbraun200g.jpg"
+    "qr": "./biochampiognonsbraun200g.jpg"
   },
   {
     "barcode": "567890",
     "name": "Bio Bundmohren 1 Bund",
-    "qr": "./assets/biobundmohren1bund.jpg"
+    "qr": "./biobundmohren1bund.jpg"
   },
   {
     "barcode": "567890",
