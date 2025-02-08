@@ -53,8 +53,8 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                width: 150, // Ensure it has a defined width
-                height: 150, // Ensure it has a defined height
+                width: 100,
+                height: 100,
                 child: QrGenerator(barcode),
               ),
               SizedBox(height: 16),
