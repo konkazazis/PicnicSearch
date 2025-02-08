@@ -69,8 +69,8 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
             children: [
               Image.asset(
                 qrPath,
-                width: 150,
-                height: 150,
+                width: 200,
+                height: 200,
                 errorBuilder: (context, error, stackTrace) {
                   return Icon(Icons.broken_image,
                       size: 100, color: Colors.grey);
@@ -94,7 +94,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Barcode Search')),
+      appBar: AppBar(title: Text('Product Search')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
