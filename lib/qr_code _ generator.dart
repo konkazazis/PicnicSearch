@@ -11,7 +11,7 @@ class QrGenerator extends StatelessWidget {
     return QrImageView(
       data: qrCode,
       version: QrVersions.auto,
-      size: 150.0, // Increased size for better visibility
+      size: 200.0,
     );
   }
 }
