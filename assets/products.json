@@ -1,292 +1,234 @@
 [
   {
     "barcode": "04311527574865",
-    "name": "Bundmohren 1 Bund",
-    "qr": "./bundmohren.jpg"
+    "name": "Bundmohren 1 Bund"
   },
   {
     "barcode": "04048184000030",
-    "name": "Bio Trauben hell 400g",
-    "qr": "./biotrauben.jpg"
+    "name": "Bio Trauben hell 400g"
   },
   {
     "barcode": "-",
-    "name": "Lauchzwiebeln 1 Bund",
-    "qr": "./lauchzwiebeln1bund.jpg"
+    "name": "Lauchzwiebeln 1 Bund"
   },
   {
     "barcode": "04311527724123",
-    "name": "Gut&Gunstig Mohren 2kg",
-    "qr": "./ggmohren2kg.jpg"
+    "name": "Gut&Gunstig Mohren 2kg"
   },
   {
     "barcode": "00000094009583",
-    "name": "PN Bio Kiwi Gold 3st",
-    "qr": "./pnbiokiwigold.jpg"
+    "name": "PN Bio Kiwi Gold 3st"
   },
   {
     "barcode": "00000000042030",
-    "name": "PN Kaki 1st",
-    "qr": "./pnkaki1st.jpg"
+    "name": "PN Kaki 1st"
   },
   {
     "barcode": "-",
-    "name": "Gut&Gunstig Birnen Conference 1kg",
-    "qr": ""
+    "name": "Gut&Gunstig Birnen Conference 1kg"
   },
   {
     "barcode": "00000000041157",
-    "name": "PN Blumenkohl 1st",
-    "qr": "./pnblumenkohl1st.jpg"
+    "name": "PN Blumenkohl 1st"
   },
   {
     "barcode": "03458462028112",
-    "name": "PN Granatapfel 1st",
-    "qr": "./pngrnatapfel1st.jpg"
+    "name": "PN Granatapfel 1st"
   },
   {
     "barcode": "04313705999828",
-    "name": "meinLand Bio Hokkaido Kurbis 1st",
-    "qr": "./hokkaidokurbis.jpg"
+    "name": "meinLand Bio Hokkaido Kurbis 1st"
   },
   {
     "barcode": "04311527670031",
-    "name": "Gut&Gunstig Apfel Jonagored 1kg",
-    "qr": "./ggapfeljonagored.jpg"
+    "name": "Gut&Gunstig Apfel Jonagored 1kg"
   },
   {
     "barcode": "04311527184866",
-    "name": "Bio Champiognons braun 200g",
-    "qr": "./biochampiognonsbraun200g.jpg"
+    "name": "Bio Champiognons braun 200g"
   },
   {
     "barcode": "04019607333004",
-    "name": "Bio Bundmohren 1 Bund",
-    "qr": "./biobundmohren1bund.jpg"
+    "name": "Bio Bundmohren 1 Bund"
   },
   {
     "barcode": "00000000041166",
-    "name": "Kohlrabi 1st",
-    "qr": ""
+    "name": "Kohlrabi 1st"
   },
   {
     "barcode": "4900000001020",
-    "name": "PN Rotkohl 1 Stuck",
-    "qr": ""
+    "name": "PN Rotkohl 1 Stuck"
   },
   {
     "barcode": "4250834950958",
-    "name": "PN Staudensellerie 1 Stuck",
-    "qr": ""
+    "name": "PN Staudensellerie 1 Stuck"
   },
   {
     "barcode": "4900000005165",
-    "name": "MeinLand Knoblauch frisch 1 St.",
-    "qr": ""
+    "name": "MeinLand Knoblauch frisch 1 St."
   },
   {
     "barcode": "4900000000306",
-    "name": "MeinLand Chiakohl 1 Stuck",
-    "qr": ""
+    "name": "MeinLand Chiakohl 1 Stuck"
   },
   {
     "barcode": "4900000004939",
-    "name": "PN Suppengrun 750g",
-    "qr": ""
+    "name": "PN Suppengrun 750g"
   },
   {
     "barcode": "2010031169711",
-    "name": "Edeka Bio Bio Kokosnuss 1 Stuck",
-    "qr": ""
+    "name": "Edeka Bio Bio Kokosnuss 1 Stuck"
   },
   {
     "barcode": "4900000000498",
-    "name": "PN Fenchel 1 Stuck",
-    "qr": ""
+    "name": "PN Fenchel 1 Stuck"
   },
   {
     "barcode": "4019709290427",
-    "name": "PN Radieschen 1 Bund",
-    "qr": ""
+    "name": "PN Radieschen 1 Bund"
   },
   {
     "barcode": "4250132416392",
-    "name": "PN Kopfsalat 1 Stuck",
-    "qr": ""
+    "name": "PN Kopfsalat 1 Stuck"
   },
   {
     "barcode": "4900000001150",
-    "name": "MeinLand Lauchzwiebeln 1 Bund",
-    "qr": ""
+    "name": "MeinLand Lauchzwiebeln 1 Bund"
   },
   {
     "barcode": "4900000000542",
-    "name": "Edeka Zucchini 1 Stuck",
-    "qr": ""
+    "name": "Edeka Zucchini 1 Stuck"
   },
   {
     "barcode": "4250132222115",
-    "name": "PN Endivien Salat 1 Stuck",
-    "qr": ""
+    "name": "PN Endivien Salat 1 Stuck"
   },
   {
     "barcode": "4900000000436",
-    "name": "MeinLand Wirsingkohl 1 St.",
-    "qr": ""
+    "name": "MeinLand Wirsingkohl 1 St."
   },
   {
     "barcode": "2830860000000",
-    "name": "PN Porree 1 Stuck",
-    "qr": ""
+    "name": "PN Porree 1 Stuck"
   },
   {
     "barcode": "4311527055104",
-    "name": "MeinLand Spitzkohl 1 St.",
-    "qr": ""
+    "name": "MeinLand Spitzkohl 1 St."
   },
   {
     "barcode": "4251593000083",
-    "name": "MeinLand Blumenkohl 1 St.",
-    "qr": ""
+    "name": "MeinLand Blumenkohl 1 St."
   },
   {
     "barcode": "4032218152888",
-    "name": "PN Kohlrabi 1 Stuck",
-    "qr": ""
+    "name": "PN Kohlrabi 1 Stuck"
   },
   {
     "barcode": "4011424146898",
-    "name": "PN Bio Bio Kohlrabi 1 Stuck",
-    "qr": ""
+    "name": "PN Bio Bio Kohlrabi 1 Stuck"
   },
   {
     "barcode": "4900000003215",
-    "name": "Edeka Bio Bio Hokkaido Kurbis 1 Stuck",
-    "qr": ""
+    "name": "Edeka Bio Bio Hokkaido Kurbis 1 Stuck"
   },
   {
     "barcode": "4270001237170",
-    "name": "Edeka Bio Bio Butternut Kurbis 1 Stuck",
-    "qr": ""
+    "name": "Edeka Bio Bio Butternut Kurbis 1 Stuck"
   },
   {
     "barcode": "4900000000375",
-    "name": "MeinLand Weisskohl 1 Stuck",
-    "qr": ""
+    "name": "MeinLand Weisskohl 1 Stuck"
   },
   {
     "barcode": "4900000000344",
-    "name": "MeinLand Rettich 1 Stuck",
-    "qr": ""
+    "name": "MeinLand Rettich 1 Stuck"
   },
   {
     "barcode": "41567",
-    "name": "PN Spitzkohl 1 Stuck",
-    "qr": ""
+    "name": "PN Spitzkohl 1 Stuck"
   },
   {
     "barcode": "00333832507868",
-    "name": "Trauben rot kernlos 500g",
-    "qr": ""
+    "name": "Trauben rot kernlos 500g"
   },
   {
     "barcode": "00843710757006",
-    "name": "Eisbergsalat 1st",
-    "qr": ""
+    "name": "Eisbergsalat 1st"
   },
   {
     "barcode": "4250132416392",
-    "name": "PN Kopfsalat 1 Stuck",
-    "qr": ""
+    "name": "PN Kopfsalat 1 Stuck"
   },
   {
     "barcode": "04003910006144",
-    "name": "Blattspinat 500g",
-    "qr": ""
+    "name": "Blattspinat 500g"
   },
   {
     "barcode": "04000007050516",
-    "name": "Edeka Mini Romanasalat 2st",
-    "qr": ""
+    "name": "Edeka Mini Romanasalat 2st"
   },
   {
     "barcode": "00033383220291",
-    "name": "Kultyrheidelbeeren 125g",
-    "qr": ""
+    "name": "Kultyrheidelbeeren 125g"
   },
   {
     "barcode": "00200023526956",
-    "name": "Broccoli 400g",
-    "qr": ""
+    "name": "Broccoli 400g"
   },
   {
     "barcode": "4250132416392",
-    "name": "PN Kopfsalat 1 Stuck",
-    "qr": ""
+    "name": "PN Kopfsalat 1 Stuck"
   },
   {
     "barcode": "00000000041173",
-    "name": "Mairuben",
-    "qr": ""
+    "name": "Mairuben"
   },
   {
     "barcode": "04311527184729",
-    "name": "Bio Blumenkohl ",
-    "qr": ""
+    "name": "Bio Blumenkohl "
   },
   {
     "barcode": "04311532111918",
-    "name": "Spargel Weiss 16mm",
-    "qr": ""
+    "name": "Spargel Weiss 16mm"
   },
   {
     "barcode": "04016414018292",
-    "name": "Pastinaken",
-    "qr": ""
+    "name": "Pastinaken"
   },
   {
     "barcode": "04038813125753",
-    "name": "Rote Johannisbeeren 200g",
-    "qr": ""
+    "name": "Rote Johannisbeeren 200g"
   },
   {
     "barcode": "4250132416392",
-    "name": "PN Kopfsalat 1 Stuck",
-    "qr": ""
+    "name": "PN Kopfsalat 1 Stuck"
   },
   {
     "barcode": "4250132416392",
-    "name": "MeinLand Bio Porree 1 Bund mind. 430g",
-    "qr": ""
+    "name": "MeinLand Bio Porree 1 Bund mind. 430g"
   },
   {
     "barcode": "04313705190416",
-    "name": "MeinLand Mohren 1kg",
-    "qr": ""
+    "name": "MeinLand Mohren 1kg"
   },
   {
     "barcode": "4250132416392",
-    "name": "PN Kopfsalat 1 Stuck",
-    "qr": ""
+    "name": "PN Kopfsalat 1 Stuck"
   },
   {
     "barcode": "04311527736670",
-    "name": "Knollensellerie 1stk",
-    "qr": ""
+    "name": "Knollensellerie 1stk"
   },
   {
     "barcode": "04311527191796",
-    "name": "Nashi Birne 1stk",
-    "qr": ""
+    "name": "Nashi Birne 1stk"
   },
   {
     "barcode": "04311527118175",
-    "name": "Mini Kopfsalatherzen",
-    "qr": ""
+    "name": "Mini Kopfsalatherzen"
   },
   {
     "barcode": "04311527625628",
-    "name": "Edeka Thymian 15g",
-    "qr": ""
+    "name": "Edeka Thymian 15g"
   }
 ]
