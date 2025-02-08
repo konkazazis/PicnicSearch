@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:picnic_search/qr_code%20_%20generator.dart'; // Ensure correct import
 import 'package:picnic_search/welcome.dart';
 
 class BarcodeSearchScreen extends StatefulWidget {
@@ -41,9 +42,8 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
     });
   }
 
-  // showDialog triggers the pop up for every item
   Future<void> _showProductDialog(
-      BuildContext context, String name, String barcode, String qrPath) {
+      BuildContext context, String name, String barcode) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -52,14 +52,10 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(
-                qrPath,
-                width: 200,
-                height: 200,
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(Icons.broken_image,
-                      size: 100, color: Colors.grey);
-                },
+              SizedBox(
+                width: 150, // Ensure it has a defined width
+                height: 150, // Ensure it has a defined height
+                child: QrGenerator(barcode),
               ),
               SizedBox(height: 16),
               Text('Barcode: $barcode'),
@@ -111,7 +107,6 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                         context,
                         filteredProducts[index]['name']!,
                         filteredProducts[index]['barcode']!,
-                        filteredProducts[index]['qr']!,
                       ),
                     ),
                   );
