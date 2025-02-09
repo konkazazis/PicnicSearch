@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:picnic_search/qr_code%20_%20generator.dart'; // Ensure correct import
+import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore package
+import 'package:picnic_search/qr_code%20_%20generator.dart'; // QR Code generator (ensure it's correct)
 
 class BarcodeSearchScreen extends StatefulWidget {
   const BarcodeSearchScreen({super.key});
@@ -11,36 +10,60 @@ class BarcodeSearchScreen extends StatefulWidget {
 }
 
 class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
-  List<Map<String, String>> products = [];
-  List<Map<String, String>> filteredProducts = [];
-  TextEditingController searchController = TextEditingController();
+  List<Map<String, String>> products =
+      []; // List to store products from Firestore
+  List<Map<String, String>> filteredProducts =
+      []; // Filtered list based on search query
+  TextEditingController searchController =
+      TextEditingController(); // Controller for search bar
 
   @override
   void initState() {
     super.initState();
-    loadProducts();
+    loadProducts(); // Load products when screen is initialized
   }
 
+  // Fetch products from Firestore
   Future<void> loadProducts() async {
-    String jsonString = await rootBundle.loadString('assets/products.json');
-    List<dynamic> jsonResponse = json.decode(jsonString);
-    setState(() {
-      products =
-          jsonResponse.map((data) => Map<String, String>.from(data)).toList();
-      filteredProducts = products;
-    });
+    try {
+      FirebaseFirestore db = FirebaseFirestore.instance;
+      QuerySnapshot querySnapshot = await db
+          .collection("products")
+          .get(); // Get products collection from Firestore
+
+      setState(() {
+        // Map the Firestore documents into List<Map<String, String>>
+        products = querySnapshot.docs.map((doc) {
+          final data = doc.data()
+              as Map<String, dynamic>; // Cast to Map<String, dynamic>
+          return {
+            'name': data['name']?.toString() ??
+                '', // Safely cast to String or default to empty string
+            'barcode': data['barcode']?.toString() ??
+                '', // Safely cast to String or default to empty string
+          };
+        }).toList();
+        filteredProducts = products; // Initialize filtered list
+      });
+    } catch (e) {
+      print("Error fetching products from Firestore: $e");
+    }
   }
 
+  // Filter products based on search query
   void _filterProducts(String query) {
     setState(() {
       filteredProducts = products
           .where((product) =>
-              product['barcode']!.contains(query) ||
-              product['name']!.toLowerCase().contains(query.toLowerCase()))
+              product['barcode']!.contains(query) || // Filter by barcode
+              product['name']!
+                  .toLowerCase()
+                  .contains(query.toLowerCase())) // Filter by name
           .toList();
     });
   }
 
+  // Show product dialog with QR code and barcode
   Future<void> _showProductDialog(
       BuildContext context, String name, String barcode) {
     return showDialog<void>(
@@ -54,7 +77,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
               SizedBox(
                 width: 200,
                 height: 200,
-                child: QrGenerator(barcode),
+                child: QrGenerator(barcode), // Generate QR code for barcode
               ),
               const SizedBox(height: 16),
               Text('Barcode: $barcode'),
@@ -83,6 +106,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
+            // Search input field
             TextField(
               controller: searchController,
               decoration: const InputDecoration(
@@ -90,9 +114,10 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.search),
               ),
-              onChanged: _filterProducts,
+              onChanged: _filterProducts, // Filter products as user types
             ),
             const SizedBox(height: 10),
+            // List of filtered products
             Expanded(
               child: ListView.builder(
                 itemCount: filteredProducts.length,
