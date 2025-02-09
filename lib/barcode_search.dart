@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:picnic_search/qr_code%20_%20generator.dart'; // Ensure correct import
-import 'package:picnic_search/welcome.dart';
 
 class BarcodeSearchScreen extends StatefulWidget {
   const BarcodeSearchScreen({super.key});
@@ -57,7 +56,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                 height: 200,
                 child: QrGenerator(barcode),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text('Barcode: $barcode'),
             ],
           ),
@@ -76,9 +75,9 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Search'),
+        title: const Text('Product Search'),
         foregroundColor: Colors.white,
-        backgroundColor: Color(0xFF00C4CC),
+        backgroundColor: const Color(0xFF00C4CC),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -86,14 +85,14 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
           children: [
             TextField(
               controller: searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search by barcode or product name',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.search),
               ),
               onChanged: _filterProducts,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                 itemCount: filteredProducts.length,
