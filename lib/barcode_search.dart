@@ -13,6 +13,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
   List<Map<String, String>> products = [];
   List<Map<String, String>> filteredProducts = [];
   TextEditingController searchController = TextEditingController();
+  bool _isLoading = true; // Loading state
 
   @override
   void initState() {
@@ -21,6 +22,9 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
   }
 
   Future<void> loadProducts() async {
+    setState(() {
+      _isLoading = true; // Show loader
+    });
     try {
       FirebaseFirestore db = FirebaseFirestore.instance;
       QuerySnapshot querySnapshot = await db.collection("products").get();
@@ -38,6 +42,10 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
       });
     } catch (e) {
       print("Error fetching products: $e");
+    } finally {
+      setState(() {
+        _isLoading = false; // Hide loader
+      });
     }
   }
 
@@ -213,50 +221,56 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
               onChanged: _filterProducts,
             ),
             const SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: filteredProducts.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 6), // Adds more space around content
-                      title: Text(filteredProducts[index]['name']!),
-                      subtitle: Text(
-                          'Barcode: ${filteredProducts[index]['barcode']}'),
-                      onTap: () => _showProductDialog(
-                        context,
-                        filteredProducts[index]['name']!,
-                        filteredProducts[index]['barcode']!,
-                      ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon:
-                                const Icon(Icons.edit, color: Colors.blueGrey),
-                            onPressed: () => _showEditDialog(
+            _isLoading
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount: filteredProducts.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 6), // Adds more space around content
+                            title: Text(filteredProducts[index]['name']!),
+                            subtitle: Text(
+                                'Barcode: ${filteredProducts[index]['barcode']}'),
+                            onTap: () => _showProductDialog(
                               context,
-                              id: filteredProducts[index]['id']!,
-                              name: filteredProducts[index]['name']!,
-                              barcode: filteredProducts[index]['barcode']!,
+                              filteredProducts[index]['name']!,
+                              filteredProducts[index]['barcode']!,
+                            ),
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.edit,
+                                      color: Colors.blueGrey),
+                                  onPressed: () => _showEditDialog(
+                                    context,
+                                    id: filteredProducts[index]['id']!,
+                                    name: filteredProducts[index]['name']!,
+                                    barcode: filteredProducts[index]
+                                        ['barcode']!,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.delete,
+                                      color: Colors.red),
+                                  onPressed: () => _showDeleteDialog(
+                                    context,
+                                    filteredProducts[index]['id']!,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.red),
-                            onPressed: () => _showDeleteDialog(
-                              context,
-                              filteredProducts[index]['id']!,
-                            ),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
+                  ),
           ],
         ),
       ),
