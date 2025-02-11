@@ -44,8 +44,8 @@ class WelcomePage extends StatelessWidget {
             children: [
               Image.asset(
                 'assets/picnic_logo.png',
-                width: 300,
-                height: 300,
+                width: 250,
+                height: 250,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return const Icon(Icons.broken_image,

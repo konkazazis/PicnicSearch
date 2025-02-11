@@ -100,7 +100,8 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
       appBar: AppBar(
         title: const Text('Product Search'),
         foregroundColor: Colors.white,
-        backgroundColor: const Color(0xFF00C4CC),
+        backgroundColor: const Color(0xFF00B0B8),
+
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
