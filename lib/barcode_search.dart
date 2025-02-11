@@ -219,6 +219,9 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 6), // Adds more space around content
                       title: Text(filteredProducts[index]['name']!),
                       subtitle: Text(
                           'Barcode: ${filteredProducts[index]['barcode']}'),
@@ -231,7 +234,8 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.blue),
+                            icon:
+                                const Icon(Icons.edit, color: Colors.blueGrey),
                             onPressed: () => _showEditDialog(
                               context,
                               id: filteredProducts[index]['id']!,
