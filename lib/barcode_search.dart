@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Firestore package
-import 'package:picnic_search/qr_code%20_%20generator.dart'; // QR Code generator (ensure it's correct)
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:picnic_search/qr_code%20_%20generator.dart';
 
 class BarcodeSearchScreen extends StatefulWidget {
   const BarcodeSearchScreen({super.key});
@@ -10,60 +10,157 @@ class BarcodeSearchScreen extends StatefulWidget {
 }
 
 class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
-  List<Map<String, String>> products =
-      []; // List to store products from Firestore
-  List<Map<String, String>> filteredProducts =
-      []; // Filtered list based on search query
-  TextEditingController searchController =
-      TextEditingController(); // Controller for search bar
+  List<Map<String, String>> products = [];
+  List<Map<String, String>> filteredProducts = [];
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    loadProducts(); // Load products when screen is initialized
+    loadProducts();
   }
 
-  // Fetch products from Firestore
   Future<void> loadProducts() async {
     try {
       FirebaseFirestore db = FirebaseFirestore.instance;
-      QuerySnapshot querySnapshot = await db
-          .collection("products")
-          .get(); // Get products collection from Firestore
+      QuerySnapshot querySnapshot = await db.collection("products").get();
 
       setState(() {
-        // Map the Firestore documents into List<Map<String, String>>
         products = querySnapshot.docs.map((doc) {
-          final data = doc.data()
-              as Map<String, dynamic>; // Cast to Map<String, dynamic>
+          final data = doc.data() as Map<String, dynamic>;
           return {
-            'name': data['name']?.toString() ??
-                '', // Safely cast to String or default to empty string
-            'barcode': data['barcode']?.toString() ??
-                '', // Safely cast to String or default to empty string
+            'id': doc.id, // Store Firestore document ID
+            'name': data['name']?.toString() ?? '',
+            'barcode': data['barcode']?.toString() ?? '',
           };
         }).toList();
-        filteredProducts = products; // Initialize filtered list
+        filteredProducts = products;
       });
     } catch (e) {
-      print("Error fetching products from Firestore: $e");
+      print("Error fetching products: $e");
     }
   }
 
-  // Filter products based on search query
   void _filterProducts(String query) {
     setState(() {
       filteredProducts = products
           .where((product) =>
-              product['barcode']!.contains(query) || // Filter by barcode
-              product['name']!
-                  .toLowerCase()
-                  .contains(query.toLowerCase())) // Filter by name
+              product['barcode']!.contains(query) ||
+              product['name']!.toLowerCase().contains(query.toLowerCase()))
           .toList();
     });
   }
 
-  // Show product dialog with QR code and barcode
+  Future<void> _updateProduct(
+      String id, String newName, String newBarcode) async {
+    try {
+      await FirebaseFirestore.instance.collection('products').doc(id).update({
+        'name': newName,
+        'barcode': newBarcode,
+      });
+      await loadProducts(); // Refresh product list
+    } catch (e) {
+      print("Error updating product: $e");
+    }
+  }
+
+  Future<void> _deleteProduct(String id) async {
+    try {
+      await FirebaseFirestore.instance.collection('products').doc(id).delete();
+      await loadProducts(); // Refresh list after deletion
+    } catch (e) {
+      print("Error deleting product: $e");
+    }
+  }
+
+  Future<void> _addProduct(String name, String barcode) async {
+    try {
+      await FirebaseFirestore.instance.collection('products').add({
+        'name': name,
+        'barcode': barcode,
+      });
+      await loadProducts(); // Refresh list after adding
+    } catch (e) {
+      print("Error adding product: $e");
+    }
+  }
+
+  Future<void> _showEditDialog(BuildContext context,
+      {String? id, String? name, String? barcode}) {
+    TextEditingController nameController =
+        TextEditingController(text: name ?? '');
+    TextEditingController barcodeController =
+        TextEditingController(text: barcode ?? '');
+
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(id == null ? 'Add Product' : 'Edit Product'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Product Name'),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: barcodeController,
+                decoration: const InputDecoration(labelText: 'Barcode'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            ElevatedButton(
+              child: const Text('Save'),
+              onPressed: () async {
+                if (id == null) {
+                  await _addProduct(
+                      nameController.text, barcodeController.text);
+                } else {
+                  await _updateProduct(
+                      id, nameController.text, barcodeController.text);
+                }
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showDeleteDialog(BuildContext context, String id) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Delete Product'),
+          content: const Text('Are you sure you want to delete this product?'),
+          actions: [
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+              child: const Text('Delete'),
+              onPressed: () async {
+                await _deleteProduct(id);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   Future<void> _showProductDialog(
       BuildContext context, String name, String barcode) {
     return showDialog<void>(
@@ -77,7 +174,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
               SizedBox(
                 width: 200,
                 height: 200,
-                child: QrGenerator(barcode), // Generate QR code for barcode
+                child: QrGenerator(barcode),
               ),
               const SizedBox(height: 16),
               Text('Barcode: $barcode'),
@@ -101,13 +198,11 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
         title: const Text('Product Search'),
         foregroundColor: Colors.white,
         backgroundColor: const Color(0xFF00B0B8),
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // Search input field
             TextField(
               controller: searchController,
               decoration: const InputDecoration(
@@ -115,10 +210,9 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.search),
               ),
-              onChanged: _filterProducts, // Filter products as user types
+              onChanged: _filterProducts,
             ),
             const SizedBox(height: 10),
-            // List of filtered products
             Expanded(
               child: ListView.builder(
                 itemCount: filteredProducts.length,
@@ -133,6 +227,27 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
                         filteredProducts[index]['name']!,
                         filteredProducts[index]['barcode']!,
                       ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.edit, color: Colors.blue),
+                            onPressed: () => _showEditDialog(
+                              context,
+                              id: filteredProducts[index]['id']!,
+                              name: filteredProducts[index]['name']!,
+                              barcode: filteredProducts[index]['barcode']!,
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.delete, color: Colors.red),
+                            onPressed: () => _showDeleteDialog(
+                              context,
+                              filteredProducts[index]['id']!,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -140,6 +255,11 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFF00B0B8),
+        child: const Icon(Icons.add, color: Colors.white),
+        onPressed: () => _showEditDialog(context), // Opens Add Product dialog
       ),
     );
   }

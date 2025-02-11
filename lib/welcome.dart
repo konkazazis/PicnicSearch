@@ -5,35 +5,12 @@ import 'package:picnic_search/barcode_search.dart';
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
-  // Future<void> fetchData() async {
-  //   try {
-  //     FirebaseFirestore db = FirebaseFirestore.instance;
-  //     QuerySnapshot querySnapshot = await db.collection("products").get();
-
-  //     if (querySnapshot.docs.isNotEmpty) {
-  //       for (var doc in querySnapshot.docs) {
-  //         final data = doc.data() as Map<String, dynamic>?;
-  //         if (data != null) {
-  //           print("Document ID: ${doc.id}, Data: $data");
-  //         } else {
-  //           print("Document with ID: ${doc.id} has no data.");
-  //         }
-  //       }
-  //     } else {
-  //       print("No documents found in the 'products' collection.");
-  //     }
-  //   } catch (e) {
-  //     print("Error getting documents: ${e.toString()}");
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: GestureDetector(
           onTap: () {
-            //fetchData();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => BarcodeSearchScreen()),
@@ -42,15 +19,27 @@ class WelcomePage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min, // Keeps widgets centered
             children: [
-              Image.asset(
-                'assets/picnic_logo.png',
-                width: 250,
-                height: 250,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.broken_image,
-                      size: 100, color: Colors.grey);
-                },
+              Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5), // Shadow color
+                      blurRadius: 10, // Spread of the blur
+                      spreadRadius: 2, // How far the shadow spreads
+                      offset: Offset(5, 5), // Shadow position
+                    ),
+                  ],
+                ),
+                child: Image.asset(
+                  'assets/picnic_logo.png',
+                  width: 250,
+                  height: 250,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.broken_image,
+                        size: 100, color: Colors.grey);
+                  },
+                ),
               ),
               const SizedBox(height: 20), // Adds spacing between elements
               const Text(
