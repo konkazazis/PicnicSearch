@@ -33,7 +33,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
         products = querySnapshot.docs.map((doc) {
           final data = doc.data() as Map<String, dynamic>;
           return {
-            'id': doc.id, // Store Firestore document ID
+            'id': doc.id,
             'name': data['name']?.toString() ?? '',
             'barcode': data['barcode']?.toString() ?? '',
           };
@@ -44,7 +44,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
       print("Error fetching products: $e");
     } finally {
       setState(() {
-        _isLoading = false; // Hide loader
+        _isLoading = false;
       });
     }
   }
@@ -222,8 +222,12 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
             ),
             const SizedBox(height: 10),
             _isLoading
-                ? const Center(
-                    child: CircularProgressIndicator(),
+                ? Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blueGrey,
+                      ),
+                    ),
                   )
                 : Expanded(
                     child: ListView.builder(

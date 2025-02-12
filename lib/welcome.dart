@@ -17,16 +17,16 @@ class WelcomePage extends StatelessWidget {
             );
           },
           child: Column(
-            mainAxisSize: MainAxisSize.min, // Keeps widgets centered
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.5), // Shadow color
-                      blurRadius: 10, // Spread of the blur
-                      spreadRadius: 2, // How far the shadow spreads
-                      offset: Offset(5, 5), // Shadow position
+                      color: Colors.black.withOpacity(0.5),
+                      blurRadius: 10,
+                      spreadRadius: 2,
+                      offset: Offset(5, 5),
                     ),
                   ],
                 ),
@@ -41,10 +41,10 @@ class WelcomePage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 20), // Adds spacing between elements
+              const SizedBox(height: 20),
               const Text(
                 'Welcome! Press here to continue...',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
             ],
           ),
