@@ -203,9 +203,26 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product Search'),
         foregroundColor: Colors.white,
+        title: const Text(
+          'Product Search',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
         backgroundColor: const Color(0xFF00B0B8),
+        elevation: 4,
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.qr_code_scanner, color: Colors.white,),
+            onPressed: () {
+
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -214,7 +231,12 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
             TextField(
               controller: searchController,
               decoration: const InputDecoration(
+                focusColor: Colors.black,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black),
+                ),
                 labelText: 'Search by barcode or product name',
+                labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.search),
               ),
