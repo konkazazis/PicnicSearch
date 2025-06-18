@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:picnic_search/qr_code%20_%20generator.dart';
+import 'package:picnic_search/qr_code_scanner.dart';
 
 class BarcodeSearchScreen extends StatefulWidget {
   const BarcodeSearchScreen({super.key});
@@ -219,7 +220,7 @@ class _BarcodeSearchScreenState extends State<BarcodeSearchScreen> {
           IconButton(
             icon: const Icon(Icons.qr_code_scanner, color: Colors.white,),
             onPressed: () {
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) => QrScanner()));
             },
           ),
         ],
